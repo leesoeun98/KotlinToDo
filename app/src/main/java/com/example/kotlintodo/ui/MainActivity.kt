@@ -1,4 +1,4 @@
-package com.example.kotlintodo
+package com.example.kotlintodo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.FragmentTransaction
+import com.example.kotlintodo.ui.fragment.HomeFragment
+import com.example.kotlintodo.R
 import com.example.kotlintodo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

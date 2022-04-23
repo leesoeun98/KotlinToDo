@@ -1,8 +1,10 @@
-package com.example.kotlintodo
+package com.example.kotlintodo.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.kotlintodo.ui.fragment.DoneFragment
+import com.example.kotlintodo.ui.fragment.PendingFragment
 
 class ViewPagerFragmentStateAdapter(fragmentActivity: FragmentActivity): FragmentStateAdapter(fragmentActivity) {
 
