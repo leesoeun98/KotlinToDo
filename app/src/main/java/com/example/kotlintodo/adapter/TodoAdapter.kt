@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlintodo.databinding.ItemTodoBinding
 import com.example.kotlintodo.model.Todo
 
-class TodoPendingAdapter(var Todos: List<Todo>): RecyclerView.Adapter<TodoPendingAdapter.ToDoViewHolder>() {
+class TodoAdapter(var Todos: List<Todo>): RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
 
     private lateinit var itemBinding: ItemTodoBinding
 
     inner class ToDoViewHolder(private val itemBinding: ItemTodoBinding): RecyclerView.ViewHolder(itemBinding.root){
-        fun bind(data: Todo) {
+        fun bind(data:Todo) {
             itemBinding.tvTitle.text = data.title
             itemBinding.tvContent.text = data.content
             itemBinding.cbIsDone.isChecked = data.isDone
@@ -40,4 +40,13 @@ class TodoPendingAdapter(var Todos: List<Todo>): RecyclerView.Adapter<TodoPendin
         return position.toLong()
     }
 
+    fun setDoneData(doneData: List<Todo>){
+        Todos = doneData
+        notifyDataSetChanged()
+    }
+
+    fun setPendingData(pendingData: List<Todo>){
+        Todos = pendingData
+        notifyDataSetChanged()
+    }
 }

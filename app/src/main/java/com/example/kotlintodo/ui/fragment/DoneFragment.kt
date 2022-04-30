@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlintodo.adapter.TodoDoneAdapter
+import com.example.kotlintodo.adapter.TodoAdapter
 import com.example.kotlintodo.databinding.FragmentDoneBinding
 import com.example.kotlintodo.model.Todo
 
 class DoneFragment: Fragment() {
 
     private lateinit var binding: FragmentDoneBinding
-    private lateinit var adapter : TodoDoneAdapter
+    private lateinit var adapter : TodoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +24,7 @@ class DoneFragment: Fragment() {
         binding = FragmentDoneBinding.inflate(inflater, container, false)
 
         // 2. adapter 설정 (list를 인자로)
-        adapter = TodoDoneAdapter(emptyList<Todo>())
+        adapter = TodoAdapter(emptyList<Todo>())
         adapter.setHasStableIds(true)
         binding!!.rvDone.adapter = adapter
 

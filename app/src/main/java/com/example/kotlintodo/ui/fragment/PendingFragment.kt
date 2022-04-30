@@ -6,14 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kotlintodo.adapter.TodoPendingAdapter
+import com.example.kotlintodo.adapter.TodoAdapter
 import com.example.kotlintodo.databinding.FragmentPendingBinding
 import com.example.kotlintodo.model.Todo
 
 class PendingFragment: Fragment() {
 
     private lateinit var binding: FragmentPendingBinding
-    private lateinit var adapter : TodoPendingAdapter
+    private lateinit var adapter : TodoAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +24,7 @@ class PendingFragment: Fragment() {
         binding = FragmentPendingBinding.inflate(inflater, container, false)
 
         // 2. adapter 설정 (list를 인자로)
-        adapter = TodoPendingAdapter(listOf(Todo("first title", "first content", false)))
+        adapter = TodoAdapter(listOf(Todo("first title", "first content", false)))
         adapter.setHasStableIds(true)
         binding!!.rvPending.adapter = adapter
 
