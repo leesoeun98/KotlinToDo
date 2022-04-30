@@ -31,6 +31,13 @@ class TodoViewModel : ViewModel() {
         setData(datas)
     }
 
+    fun updateToggle(todo:Todo, isCheck: Boolean) {
+        if (todo.isDone != isCheck) {
+            todo.isDone = isCheck
+        }
+        setData(datas)
+    }
+
     private fun setData(data: ArrayList<Todo>){
         pendingList.value = data.filter { x-> !x.isDone }.toList()
         doneList.value = data.filter { x->x.isDone }.toList()

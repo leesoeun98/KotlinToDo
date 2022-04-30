@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlintodo.databinding.ItemTodoBinding
 import com.example.kotlintodo.model.Todo
 
-class TodoAdapter(var Todos: List<Todo>, val onClickDeleteButton: (todo: Todo) -> Unit): RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
+class TodoAdapter(var Todos: List<Todo>,
+                  val onClickDeleteButton: (todo: Todo) -> Unit,
+                  val onCheckedChange: (todo: Todo, isCheck: Boolean) -> Unit):
+    RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
 
     private lateinit var itemBinding: ItemTodoBinding
 
@@ -14,11 +17,17 @@ class TodoAdapter(var Todos: List<Todo>, val onClickDeleteButton: (todo: Todo) -
         fun bind(data:Todo) {
             itemBinding.tvTitle.text = data.title
             itemBinding.tvContent.text = data.content
+            // update toggle이 되지 않아 함수를 null로 먼저 초기화
+            itemBinding.cbIsDone.setOnCheckedChangeListener(null)
             itemBinding.cbIsDone.isChecked = data.isDone
 
             // delete 추가
             itemBinding.btnDelete.setOnClickListener {
                 onClickDeleteButton.invoke(data)
+            }
+            // update toggle 다시 추가
+            itemBinding.cbIsDone.setOnCheckedChangeListener { _, isChecked ->
+                onCheckedChange.invoke(data, isChecked)
             }
         }
     }

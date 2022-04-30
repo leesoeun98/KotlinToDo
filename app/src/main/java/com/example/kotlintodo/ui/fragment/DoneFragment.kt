@@ -33,8 +33,14 @@ class DoneFragment: Fragment() {
 
         // 3. adapter 설정
         var doneList = viewModel.doneList.value
-        adapter = TodoAdapter(doneList?: emptyList<Todo>(),
-             onClickDeleteButton={ viewModel.deleteTask(it)})
+        adapter = TodoAdapter(
+            doneList?: emptyList<Todo>(),
+             onClickDeleteButton={
+                 viewModel.deleteTask(it) },
+             onCheckedChange ={ it:Todo, check:Boolean ->
+                viewModel.updateToggle(it, check)
+             }
+        )
         adapter.setHasStableIds(true)
         binding.rvDone.adapter = adapter
 

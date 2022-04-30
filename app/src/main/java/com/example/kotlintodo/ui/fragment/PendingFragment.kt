@@ -35,8 +35,14 @@ class PendingFragment: Fragment() {
 
         // 3. adapter 설정 (list를 인자로)
         var pendingList = viewModel.pendingList.value
-        adapter = TodoAdapter(pendingList?: emptyList<Todo>(),
-            onClickDeleteButton={ viewModel.deleteTask(it)})
+        adapter = TodoAdapter(
+            pendingList?: emptyList<Todo>(),
+            onClickDeleteButton={
+                viewModel.deleteTask(it) },
+            onCheckedChange ={ it:Todo, check:Boolean ->
+                viewModel.updateToggle(it, check)
+            }
+        )
         adapter.setHasStableIds(true)
         binding.rvPending.adapter = adapter
 
