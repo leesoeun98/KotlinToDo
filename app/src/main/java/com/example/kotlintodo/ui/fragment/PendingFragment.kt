@@ -37,10 +37,10 @@ class PendingFragment: Fragment() {
         var pendingList = viewModel.pendingList.value
         adapter = TodoAdapter(pendingList?: emptyList<Todo>())
         adapter.setHasStableIds(true)
-        binding!!.rvPending.adapter = adapter
+        binding.rvPending.adapter = adapter
 
         // 4. recyclerView에 Layout 꼭 설정하기 (안그러면 화면에 표시 안되고 skip됨)
-        binding!!.rvPending.layoutManager = LinearLayoutManager(activity)
+        binding.rvPending.layoutManager = LinearLayoutManager(activity)
 
         // 5. return Fragment Layout View
         return binding.root

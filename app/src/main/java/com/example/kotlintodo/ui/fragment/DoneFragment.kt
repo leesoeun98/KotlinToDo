@@ -35,10 +35,10 @@ class DoneFragment: Fragment() {
         var doneList = viewModel.doneList.value
         adapter = TodoAdapter(doneList?: emptyList<Todo>())
         adapter.setHasStableIds(true)
-        binding!!.rvDone.adapter = adapter
+        binding.rvDone.adapter = adapter
 
         // 4. recyclerView에 Layout 꼭 설정하기 (안그러면 화면에 표시 안되고 skip됨)
-        binding!!.rvDone.layoutManager = LinearLayoutManager(activity)
+        binding.rvDone.layoutManager = LinearLayoutManager(activity)
 
         // 5. return Fragment Layout View
         return binding.root
