@@ -8,7 +8,7 @@ import com.example.kotlintodo.model.Todo
 class TodoViewModel : ViewModel() {
 
     val todoList = MediatorLiveData<List<Todo>>()
-    private var datas = mutableListOf<Todo>()
+    private var datas = arrayListOf<Todo>()
     val doneList = MutableLiveData<List<Todo>>()
     val pendingList = MutableLiveData<List<Todo>>()
 
@@ -19,6 +19,11 @@ class TodoViewModel : ViewModel() {
         todoList.addSource(doneList){
             value -> todoList.value = value
         }
+    }
+
+    fun addTask(todo: Todo){
+        datas.add(todo)
+        setData(datas)
     }
 
     private fun setData(data: ArrayList<Todo>){

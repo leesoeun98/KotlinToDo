@@ -8,9 +8,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kotlintodo.R
 import com.example.kotlintodo.adapter.TodoAdapter
 import com.example.kotlintodo.databinding.FragmentPendingBinding
 import com.example.kotlintodo.model.Todo
+import com.example.kotlintodo.ui.MainActivity
 import com.example.kotlintodo.ui.TodoViewModel
 
 class PendingFragment: Fragment() {
@@ -49,5 +51,14 @@ class PendingFragment: Fragment() {
         viewModel.todoList.observe(viewLifecycleOwner, Observer{
             binding.rvPending.post(Runnable { it.filter { x -> !x.isDone } })
         })
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.btnAddTask.setOnClickListener{
+            val transaction = (activity as MainActivity).supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.frameLayout, AddFragment())
+            transaction.commit()
+        }
     }
 }
