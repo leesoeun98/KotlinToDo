@@ -32,7 +32,8 @@ class PendingFragment: Fragment() {
         binding = FragmentPendingBinding.inflate(inflater, container, false)
 
         // 3. adapter 설정 (list를 인자로)
-        adapter = TodoAdapter(listOf(Todo("first title", "first content", false)))
+        var pendingList = viewModel.pendingList.value
+        adapter = TodoAdapter(pendingList?: emptyList<Todo>())
         adapter.setHasStableIds(true)
         binding!!.rvPending.adapter = adapter
 

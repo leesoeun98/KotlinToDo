@@ -31,8 +31,9 @@ class DoneFragment: Fragment() {
         // 2. View Binding 설정
         binding = FragmentDoneBinding.inflate(inflater, container, false)
 
-        // 3. adapter 설정 (list를 인자로)
-        adapter = TodoAdapter(emptyList<Todo>())
+        // 3. adapter 설정
+        var doneList = viewModel.doneList.value
+        adapter = TodoAdapter(doneList?: emptyList<Todo>())
         adapter.setHasStableIds(true)
         binding!!.rvDone.adapter = adapter
 
