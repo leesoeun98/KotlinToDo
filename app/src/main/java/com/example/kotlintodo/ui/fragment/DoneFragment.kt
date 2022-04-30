@@ -23,7 +23,7 @@ class DoneFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // 1. View Model 설정
         viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()) .get(
             TodoViewModel::class.java)
@@ -33,7 +33,8 @@ class DoneFragment: Fragment() {
 
         // 3. adapter 설정
         var doneList = viewModel.doneList.value
-        adapter = TodoAdapter(doneList?: emptyList<Todo>())
+        adapter = TodoAdapter(doneList?: emptyList<Todo>(),
+             onClickDeleteButton={ viewModel.deleteTask(it)})
         adapter.setHasStableIds(true)
         binding.rvDone.adapter = adapter
 

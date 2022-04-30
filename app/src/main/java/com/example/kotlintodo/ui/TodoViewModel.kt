@@ -26,6 +26,11 @@ class TodoViewModel : ViewModel() {
         setData(datas)
     }
 
+    fun deleteTask(todo:Todo){
+        datas.remove(todo)
+        setData(datas)
+    }
+
     private fun setData(data: ArrayList<Todo>){
         pendingList.value = data.filter { x-> !x.isDone }.toList()
         doneList.value = data.filter { x->x.isDone }.toList()

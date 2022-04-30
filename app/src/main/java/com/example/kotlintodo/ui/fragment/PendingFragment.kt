@@ -25,7 +25,7 @@ class PendingFragment: Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // 1. View Model 설정
         viewModel = ViewModelProvider(requireActivity(), ViewModelProvider.NewInstanceFactory()) .get(
             TodoViewModel::class.java)
@@ -35,7 +35,8 @@ class PendingFragment: Fragment() {
 
         // 3. adapter 설정 (list를 인자로)
         var pendingList = viewModel.pendingList.value
-        adapter = TodoAdapter(pendingList?: emptyList<Todo>())
+        adapter = TodoAdapter(pendingList?: emptyList<Todo>(),
+            onClickDeleteButton={ viewModel.deleteTask(it)})
         adapter.setHasStableIds(true)
         binding.rvPending.adapter = adapter
 
@@ -49,7 +50,7 @@ class PendingFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.todoList.observe(viewLifecycleOwner, Observer{
-            binding.rvPending.post(Runnable { it.filter { x -> !x.isDone } })
+            binding.rvPending.post(Runnable { adapter.setPendingData(it.filter { x -> !x.isDone }) })
         })
     }
 

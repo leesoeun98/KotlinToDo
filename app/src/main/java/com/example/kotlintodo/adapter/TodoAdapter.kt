@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlintodo.databinding.ItemTodoBinding
 import com.example.kotlintodo.model.Todo
 
-class TodoAdapter(var Todos: List<Todo>): RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
+class TodoAdapter(var Todos: List<Todo>, val onClickDeleteButton: (todo: Todo) -> Unit): RecyclerView.Adapter<TodoAdapter.ToDoViewHolder>() {
 
     private lateinit var itemBinding: ItemTodoBinding
 
@@ -15,6 +15,11 @@ class TodoAdapter(var Todos: List<Todo>): RecyclerView.Adapter<TodoAdapter.ToDoV
             itemBinding.tvTitle.text = data.title
             itemBinding.tvContent.text = data.content
             itemBinding.cbIsDone.isChecked = data.isDone
+
+            // delete 추가
+            itemBinding.btnDelete.setOnClickListener {
+                onClickDeleteButton.invoke(data)
+            }
         }
     }
 
